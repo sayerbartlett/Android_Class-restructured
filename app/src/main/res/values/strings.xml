@@ -15,5 +15,9 @@
     <string name="info_assignment">Assignment 3</string>
     <string name="action_search">Search</string>
     <string name="action_like">Punch It!</string>
+    <string name="title_activity_rick_astley">RickAstleyActivity</string>
+    <string name="RickAstley">rickastley</string>
+    <string name="rick_rolled">You just got Rick Rolled BITCH!</string>
+    <string name="total_clicks">clicks</string>
 
 </resources>

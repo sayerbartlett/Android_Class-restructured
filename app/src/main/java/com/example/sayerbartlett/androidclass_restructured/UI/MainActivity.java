@@ -25,6 +25,10 @@ public class MainActivity extends ActionBarActivity
   private TextView mTextViewPunchIt;
   private int mTotalClicks;
   public final static String EXTRA_MESSAGE = "com.mycompany.android class.MESSAGE";
+  private Boolean mOnFirstLvl = true;
+  private Boolean mOnSecondLvl = false;
+  private Boolean mOnThirdLvl = false;
+  private Boolean mOnFourthLvl = false;
 
 
   @Override
@@ -127,13 +131,39 @@ public class MainActivity extends ActionBarActivity
 
   public void updateClicks()
   {
+
     mTotalClicks++;
 
-    //if(mTotalClicks == 25)
-      //startActivity(new Intent(this, rickAstleyActivity.class));
+    if(mTotalClicks == 25 && mOnFirstLvl)
+    {
+      mOnFirstLvl = false;
+      mOnSecondLvl = true;
+      mTotalClicks = 0;
+      mButtonClicker.setText("Did you think it would be that Easy?? Click 10 more times for the SURPRISE!!");
+    }
 
-    //else
-      mTextView.setText("Clicks so far: " + mTotalClicks);
+    if(mTotalClicks == 10 && mOnSecondLvl)
+    {
+      mOnSecondLvl = false;
+      mOnThirdLvl = true;
+      mTotalClicks = 0;
+      mButtonClicker.setText("SURPRISE!!! Just kidding... Click 7 more times!");
+    }
+
+    if(mTotalClicks == 7 && mOnThirdLvl)
+    {
+      mOnThirdLvl = false;
+      mOnFourthLvl = true;
+      mTotalClicks =0;
+      mButtonClicker.setText("Okay I promise! Just 100 more and the SURPRISE is yours!!");
+    }
+
+    if(mTotalClicks == 1 && mOnFourthLvl)
+    {
+      startActivity(new Intent(this, RickAstleyActivity.class));
+    }
+    else
+      mTextView.setText(getString(R.string.total_clicks) + " " + mTotalClicks);
 
   }
 

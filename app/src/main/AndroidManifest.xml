@@ -32,6 +32,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".UI.MainActivity" />
         </activity>
+        <activity
+            android:name=".UI.RickAstleyActivity"
+            android:label="@string/title_activity_rick_astley"
+            android:parentActivityName=".UI.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.sayerbartlett.androidclass_restructured.UI.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

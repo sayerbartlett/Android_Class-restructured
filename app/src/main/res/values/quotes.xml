@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="five_quotes_array">
+        <item>“I’ve finally learned what ‘upward compatible’ means.  It means we get to keep all our old mistakes.”</item>
+        <item>“The Internet?  Is that thing still around?”</item>
+        <item>“The function of good software is to make the complex appear to be simple.” </item>
+        <item>“Any fool can use a computer.  Many do.”</item>
+        <item>“There are only two industries that refer to their customers as ‘users’.”</item>
+
+    </string-array>
+</resources>

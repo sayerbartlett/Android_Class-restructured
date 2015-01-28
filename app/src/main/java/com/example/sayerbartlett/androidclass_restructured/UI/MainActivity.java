@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import com.example.sayerbartlett.androidclass_restructured.R;
 
+import java.util.Random;
+
 
 public class MainActivity extends ActionBarActivity
 {
@@ -25,10 +27,17 @@ public class MainActivity extends ActionBarActivity
   private TextView mTextViewPunchIt;
   private int mTotalClicks;
   public final static String EXTRA_MESSAGE = "com.mycompany.android class.MESSAGE";
+  static final String NUM_CLICKS = "numberOfClicks";
+  static final String BOOL_FIRST = "mOnFirstLvl";
+  static final String BOOL_SECOND = "mOnSecondLvl";
+  static final String BOOL_THIRD = "mOnThirdLvl";
+  static final String BOOL_FOURTH = "mOnFourthLvl";
+  static final String BUTTON_TEXT = "clickerButtonText";
   private Boolean mOnFirstLvl = true;
   private Boolean mOnSecondLvl = false;
   private Boolean mOnThirdLvl = false;
   private Boolean mOnFourthLvl = false;
+  private String [] mQuotes;
 
 
   @Override
@@ -43,6 +52,7 @@ public class MainActivity extends ActionBarActivity
     mEditText = (EditText) findViewById(R.id.editText);
     mTextView = (TextView) findViewById(R.id.messageTextView);
     mTextViewPunchIt = (TextView) findViewById(R.id.textView_punchIt);
+    mQuotes = getResources().getStringArray(R.array.five_quotes_array);
 
     mButtonSubmit.setOnClickListener(new View.OnClickListener()
     {
@@ -111,6 +121,41 @@ public class MainActivity extends ActionBarActivity
     return super.onOptionsItemSelected(item);
   }
 
+
+  @Override
+  public void onSaveInstanceState(Bundle savedInstanceState)
+  {
+    savedInstanceState.putInt(NUM_CLICKS, mTotalClicks);
+    savedInstanceState.putBoolean(BOOL_FIRST, mOnFirstLvl);
+    savedInstanceState.putBoolean(BOOL_SECOND, mOnSecondLvl);
+    savedInstanceState.putBoolean(BOOL_THIRD, mOnThirdLvl);
+    savedInstanceState.putBoolean(BOOL_FOURTH, mOnFourthLvl);
+    savedInstanceState.putString(BUTTON_TEXT, mButtonClicker.getText().toString());
+
+    super.onSaveInstanceState(savedInstanceState);
+  }
+
+  @Override
+  public void onRestoreInstanceState(Bundle savedInstanceState)
+  {
+    // Always call the superclass so it can restore the view hierarchy
+    super.onRestoreInstanceState(savedInstanceState);
+
+
+
+    mTotalClicks = savedInstanceState.getInt(NUM_CLICKS);
+    mButtonClicker.setText(savedInstanceState.getString(BUTTON_TEXT));
+
+    if(mTotalClicks != 0)
+      mTextView.setText(getString(R.string.total_clicks) + " " + mTotalClicks);
+
+    mOnFirstLvl = savedInstanceState.getBoolean(BOOL_FIRST);
+    mOnSecondLvl = savedInstanceState.getBoolean(BOOL_SECOND);
+    mOnThirdLvl = savedInstanceState.getBoolean(BOOL_THIRD);
+    mOnFourthLvl = savedInstanceState.getBoolean(BOOL_FOURTH);
+
+  }
+
   public void showMessage(String message)
   {
     Intent intent = new Intent(this, MessageActivity.class);
@@ -126,7 +171,11 @@ public class MainActivity extends ActionBarActivity
 
   public void likeText()
   {
-    mTextViewPunchIt.setText("One does not simply MAKE an app...");
+    Random randomGenerator = new Random();
+    int randomNumber = randomGenerator.nextInt(mQuotes.length);
+
+    String qoute = (mQuotes[randomNumber]);
+    mTextViewPunchIt.setText(qoute);
   }
 
   public void updateClicks()
@@ -139,7 +188,7 @@ public class MainActivity extends ActionBarActivity
       mOnFirstLvl = false;
       mOnSecondLvl = true;
       mTotalClicks = 0;
-      mButtonClicker.setText("Did you think it would be that Easy?? Click 10 more times for the SURPRISE!!");
+      mButtonClicker.setText(getString(R.string.clicks_first_level));
     }
 
     if(mTotalClicks == 10 && mOnSecondLvl)
@@ -147,7 +196,7 @@ public class MainActivity extends ActionBarActivity
       mOnSecondLvl = false;
       mOnThirdLvl = true;
       mTotalClicks = 0;
-      mButtonClicker.setText("SURPRISE!!! Just kidding... Click 7 more times!");
+      mButtonClicker.setText(getString(R.string.clicks_second_level));
     }
 
     if(mTotalClicks == 7 && mOnThirdLvl)
@@ -155,7 +204,7 @@ public class MainActivity extends ActionBarActivity
       mOnThirdLvl = false;
       mOnFourthLvl = true;
       mTotalClicks =0;
-      mButtonClicker.setText("Okay I promise! Just 100 more and the SURPRISE is yours!!");
+      mButtonClicker.setText(getString(R.string.clicks_third_level));
     }
 
     if(mTotalClicks == 1 && mOnFourthLvl)

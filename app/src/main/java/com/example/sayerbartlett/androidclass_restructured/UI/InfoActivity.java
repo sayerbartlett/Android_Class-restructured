@@ -1,6 +1,5 @@
 package com.example.sayerbartlett.androidclass_restructured.UI;
 
-import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,10 +8,13 @@ import android.widget.TextView;
 
 import com.example.sayerbartlett.androidclass_restructured.R;
 
+import java.util.Random;
+
 
 public class InfoActivity extends ActionBarActivity
 {
   private TextView mTextViewPunchIt;
+  private String [] mQuotes;
 
   @Override
   protected void onCreate(Bundle savedInstanceState)
@@ -21,6 +23,7 @@ public class InfoActivity extends ActionBarActivity
     setContentView(R.layout.activity_info);
 
     mTextViewPunchIt = (TextView) findViewById(R.id.textView_Info_punchIt);
+    mQuotes = getResources().getStringArray(R.array.five_quotes_array);
   }
 
 
@@ -62,6 +65,10 @@ public class InfoActivity extends ActionBarActivity
 
   public void likeText()
   {
-    mTextViewPunchIt.setText("One does not simply MAKE an app...");
+    Random randomGenerator = new Random();
+    int randomNumber = randomGenerator.nextInt(mQuotes.length);
+
+    String quote = (mQuotes[randomNumber]);
+    mTextViewPunchIt.setText(quote);
   }
 }

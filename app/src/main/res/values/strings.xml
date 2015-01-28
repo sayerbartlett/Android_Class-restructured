@@ -19,5 +19,9 @@
     <string name="RickAstley">rickastley</string>
     <string name="rick_rolled">You just got Rick Rolled BITCH!</string>
     <string name="total_clicks">clicks</string>
+    <string name="punch_it_message">One does not simply MAKE an app…</string>
+    <string name="clicks_first_level">Did you think it would be that Easy?? Click 10 more times for the SURPRISE!!</string>
+    <string name="clicks_second_level">SURPRISE!!! Just kidding… Click 7 more times!</string>
+    <string name="clicks_third_level">Okay I promise! Just 100 more and the SURPRISE is yours!!</string>
 
 </resources>
